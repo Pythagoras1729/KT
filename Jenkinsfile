@@ -20,7 +20,7 @@ pipeline{
                            -STOP_RPS ${STOP_RPS}   \
                            -SERVER ${CLUSTER_NAME} \
                            -API_PATH ${PATH}           \
-                           -PORT_NUMBER ${PORT_NUMBER}   \
+                           -PORT_NUMBER 80   \
                            -API_METHOD ${METHOD}"
 
             sh """  
