@@ -35,8 +35,7 @@ pipeline{
                            """
                     }
                     catch (err) {
-                        println("Some Error while running the PNS_RATE_FINDER job")
-                        println("err:"+err)
+                        println("Some Error while running the task:\n err:"+err)
                         } //end of catch
                 }//end of script                    
             }//end of steps               
