@@ -13,29 +13,32 @@ pipeline{
     stages{
         stage('run test'){
             steps{
-                println("Test starts")
-                try{
-                    def cmd= "python  \
-                                   -START_RPS ${START_RPS} \
-                                   -STEP_UP_RATE ${STEP_RPS}   \
-                                   -LOOPS ${LOOPS}         \
-                                   -STOP_RPS ${STOP_RPS}   \
-                                   -SERVER ${CLUSTER_NAME} \
-                                   -API_PATH ${PATH}           \
-                                   -PORT_NUMBER 80   \
-                                   -API_METHOD ${METHOD}"
+                script{
+                    println("Test starts")
+                    try{
+                        def cmd= "python  \
+                                       -START_RPS ${START_RPS} \
+                                       -STEP_UP_RATE ${STEP_RPS}   \
+                                       -LOOPS ${LOOPS}         \
+                                       -STOP_RPS ${STOP_RPS}   \
+                                       -SERVER ${CLUSTER_NAME} \
+                                       -API_PATH ${PATH}           \
+                                       -PORT_NUMBER 80   \
+                                       -API_METHOD ${METHOD}"
 
-                    sh """  
-                          echo "exporting PythonPath ... "
-                          echo path: ${PATH}
+                        sh """  
+                              echo "exporting PythonPath ... "
+                              echo path: ${PATH}
 
-                          echo \$PYTHONPATH
-                          ${cmd}
-                       """
-                }catch (err) {
-                    println("Some Error while running the PNS_RATE_FINDER job")
-                }
-            }                
-        }
-    }        
-}
+                              echo \$PYTHONPATH
+                              ${cmd}
+                           """
+                    }
+                    catch (err) {
+                        println("Some Error while running the PNS_RATE_FINDER job")
+                        } //end of catch
+                }//end of script                    
+            }//end of steps               
+        }//end of stage
+    }//end of stages        
+}//end of pipeine
