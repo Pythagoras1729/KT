@@ -16,6 +16,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
+                        echo "PAth: ${PATH}"
                         def cmd= "python3  KT/take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
