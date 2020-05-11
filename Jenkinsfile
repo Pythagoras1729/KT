@@ -11,7 +11,7 @@ pipeline{
         string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
     }
     environment {
-       env.PATH = env.PATH + ";C:\\Windows\\System32"
+       env.PATH += ";C:\\Windows\\System32"
    }
     stages{
         stage('run test'){
