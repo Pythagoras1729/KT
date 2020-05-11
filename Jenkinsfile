@@ -31,7 +31,7 @@ pipeline{
                               echo "path is : ${PATH}"
                               set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
                               echo " python path is: ${PYTHONPATH}"
-                              ${cmd}
+                              "${cmd}"
                            """
                     }
                     catch (err) {
