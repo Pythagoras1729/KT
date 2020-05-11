@@ -29,9 +29,9 @@ pipeline{
 
                         bat """
                               echo "exporting PythonPath ... "
-                              echo "path: ${PATH}"
+                              echo "path is : ${PATH}"
                               export PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
-                              echo "${PYTHONPATH}"
+                              echo " python path is: ${PYTHONPATH}"
                               ${cmd}
                            """
                     }
