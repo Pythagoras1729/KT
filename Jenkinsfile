@@ -26,7 +26,7 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}" */
 
-                        bat label: '', script: '''python  KT/take_arguments.py \\
+                        bat label: '', script: '''python  take_arguments.py \\
                                        -START_RPS ${START_RPS} \\
                                        -STEP_UP_RATE ${STEP_RPS}   \\
                                        -LOOPS ${LOOPS}         \\
