@@ -30,7 +30,7 @@ pipeline{
                               echo "exporting PythonPath ... "
                               echo "path: ${PATH}"
 
-                              echo \$PYTHONPATH
+                              echo "${PYTHONPATH}"
                               ${cmd}
                            """
                     }
