@@ -17,7 +17,7 @@ pipeline{
                     println("Test starts")
                     try{
                         echo "PAth: ${PATH}"
-                        def cmd= "python3  take_arguments.py \
+                        def cm= "python3  take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -33,7 +33,7 @@ pipeline{
                               echo "path is : ${PATH}"
                               set PYTHONPATH=\$PATH:\$(pwd):\$(pwd)
                               echo " python path is: ${PYTHONPATH}"
-                              ${cmd}
+                              ${cm}
                            """
                     }
                     catch (err) {
