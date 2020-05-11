@@ -27,7 +27,7 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
 
-                        sh """
+                        bat """
                               echo "exporting PythonPath ... "
                               echo "path: ${PATH}"
                               export PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
