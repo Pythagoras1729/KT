@@ -26,8 +26,9 @@ pipeline{
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
+                        echo "Inta varaku bane undi le"
 
-                        sh """
+                        bat """
                               echo "exporting PythonPath ... "
                               echo "path is : ${PATH}"
                               set PYTHONPATH=\$PATH:\$(pwd):\$(pwd)
