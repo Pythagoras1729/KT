@@ -16,7 +16,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        def cmd= "python  KT/take_arguments.py \
+                        /* def cmd= "python  KT/take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -24,7 +24,7 @@ pipeline{
                                        -SERVER ${CLUSTER_NAME} \
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER 80   \
-                                       -API_METHOD ${METHOD}"
+                                       -API_METHOD ${METHOD}" */
 
                         bat label: '', script: '''python  KT/take_arguments.py \\
                                        -START_RPS ${START_RPS} \\
