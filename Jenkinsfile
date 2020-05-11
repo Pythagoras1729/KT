@@ -16,7 +16,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        /* def cmd= "python  KT/take_arguments.py \
+                        def cmd= "python   take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -24,21 +24,19 @@ pipeline{
                                        -SERVER ${CLUSTER_NAME} \
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER 80   \
-                                       -API_METHOD ${METHOD}" */
+                                       -API_METHOD ${METHOD}"
 
-                        bat label: '', script: '''python  take_arguments.py \\
-                                       -START_RPS ${START_RPS} \\
-                                       -STEP_UP_RATE ${STEP_RPS}   \\
-                                       -LOOPS ${LOOPS}         \\
-                                       -STOP_RPS ${STOP_RPS}   \\
-                                       -SERVER ${CLUSTER_NAME} \\
-                                       -API_PATH ${API_PATH}           \\
-                                       -PORT_NUMBER 80   \\
-                                       -API_METHOD ${METHOD}'''
+                        bat """
+                              echo "exporting PythonPath ... "
+                              echo "path is : ${PATH}"
+                              set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
+                              echo " python path is: ${PYTHONPATH}"
+                              ${cmd}
+                           """
                     }
                     catch (err) {
                         println("Some Error while running the task:\n err:"+err)
-                        } //end of catch
+                    } //end of catch
                 }//end of script
             }//end of steps
         }//end of stage
