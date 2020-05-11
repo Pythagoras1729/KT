@@ -24,7 +24,7 @@ pipeline{
                                        -SERVER ${CLUSTER_NAME} \
                                        -API_PATH ${PATH}           \
                                        -PORT_NUMBER 80   \
-                                       -API_METHOD ${METHOD}"
+                                       -API_METHOD ${method}"
 
                         sh """
                               echo "exporting PythonPath ... "
