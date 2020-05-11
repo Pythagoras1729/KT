@@ -10,13 +10,16 @@ pipeline{
         string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'Port number where we want to perform test')
         string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
     }
+    /*environment {
+        env.PATH = env.PATH + ";C:\\Windows\\System32"
+    }*/
     stages{
         stage('run test'){
             steps{
                 script{
                     println("Test starts")
                     try{
-                        def cmd= "py   take_arguments.py \
+                        def cmd= "python   take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -26,15 +29,13 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
 
-                        bat label: '', script: '''python3  take_arguments.py \\
-                                       -START_RPS ${START_RPS} \\
-                                       -STEP_UP_RATE ${STEP_RPS}   \\
-                                       -LOOPS ${LOOPS}         \\
-                                       -STOP_RPS ${STOP_RPS}   \\
-                                       -SERVER ${CLUSTER_NAME} \\
-                                       -API_PATH ${API_PATH}           \\
-                                       -PORT_NUMBER 80   \\
-                                       -API_METHOD ${METHOD}'''
+                        bat """
+                              echo "exporting PythonPath ... "
+                              echo "path is : ${PATH}"
+                              set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
+                              echo " python path is: ${PYTHONPATH}"
+                              ${cmd}
+                           """
                     }
                     catch (err) {
                         println("Some Error while running the task:\n err:"+err)
