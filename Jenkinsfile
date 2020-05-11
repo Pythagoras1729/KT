@@ -16,7 +16,6 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        echo "{$PYTHONPATH}"
                         def cmd= "python   take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
