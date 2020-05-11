@@ -28,8 +28,12 @@ pipeline{
                                        -API_METHOD ${METHOD}"
                         echo "Inta varaku bane undi le"
 
-                        sh """
-                              echo "exporting PythonPath ... "                              
+                        bat """
+                              echo "exporting PythonPath ... "
+                              echo "path is : ${PATH}"
+                              set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
+                              echo " python path is: ${PYTHONPATH}"
+                              ${cmd}                             
                            """
                     }
                     catch (err) {
