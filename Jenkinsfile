@@ -28,7 +28,7 @@ pipeline{
 
                         sh """  
                               echo "exporting PythonPath ... "
-                              echo path: ${PATH}
+                              echo "path: ${PATH}"
 
                               echo \$PYTHONPATH
                               ${cmd}
