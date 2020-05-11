@@ -26,7 +26,7 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
 
-                        sh label: '', script: '''python3  take_arguments.py \\
+                        bat label: '', script: '''python3  take_arguments.py \\
                                        -START_RPS ${START_RPS} \\
                                        -STEP_UP_RATE ${STEP_RPS}   \\
                                        -LOOPS ${LOOPS}         \\
