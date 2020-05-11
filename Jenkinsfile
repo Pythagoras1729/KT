@@ -10,9 +10,6 @@ pipeline{
         string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'Port number where we want to perform test')
         string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
     }
-    environment {
-        PATH= PATH +";C:\\Windows\\System32"
-    }
     stages{
         stage('run test'){
             steps{
