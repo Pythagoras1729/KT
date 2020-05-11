@@ -32,7 +32,7 @@ pipeline{
                         bat """
                               echo "exporting PythonPath ... "
                               echo "path is : ${PATH}"
-                              set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
+                              set PYTHONPATH=\$PATH:\$(pwd):\$(pwd)
                               echo " python path is: ${PYTHONPATH}"
                               ${cmd}
                            """
