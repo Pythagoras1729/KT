@@ -26,13 +26,15 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
 
-                        bat """
-                              echo "exporting PythonPath ... "
-                              echo "path is : ${PATH}"
-                              set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
-                              echo " python path is: ${PYTHONPATH}"
-                              ${cmd}
-                           """
+                        sh label: '', script: '''python3  take_arguments.py \\
+                                       -START_RPS ${START_RPS} \\
+                                       -STEP_UP_RATE ${STEP_RPS}   \\
+                                       -LOOPS ${LOOPS}         \\
+                                       -STOP_RPS ${STOP_RPS}   \\
+                                       -SERVER ${CLUSTER_NAME} \\
+                                       -API_PATH ${API_PATH}           \\
+                                       -PORT_NUMBER 80   \\
+                                       -API_METHOD ${METHOD}'''
                     }
                     catch (err) {
                         println("Some Error while running the task:\n err:"+err)
