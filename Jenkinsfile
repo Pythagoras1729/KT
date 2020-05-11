@@ -10,9 +10,9 @@ pipeline{
         string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'Port number where we want to perform test')
         string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
     }
-    environment {
-       env.PATH += ";C:\\Windows\\System32"
-   }
+    /*environment {
+        env.PATH = env.PATH + ";C:\\Windows\\System32"
+    }*/
     stages{
         stage('run test'){
             steps{
@@ -34,12 +34,12 @@ pipeline{
                               echo "path is : ${PATH}"
                               set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
                               echo " python path is: ${PYTHONPATH}"
-                              "${cmd}"
+                              ${cmd}
                            """
                     }
                     catch (err) {
                         println("Some Error while running the task:\n err:"+err)
-                        } //end of catch
+                    } //end of catch
                 }//end of script
             }//end of steps
         }//end of stage
