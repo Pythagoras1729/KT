@@ -1,0 +1,4 @@
+Start_Point,Step_Up_Rate,Loops,End_Limit,Server_Name,Port_Number,Path,Method
+50,75,1,200,www.jntuk.edu.in,N/A,/,GET
+25,25,1,100,www.jntuk.edu.in,N/A,/,POST
+20,20,1,100,www.jntuk.edu.in,N/A,/,GET
