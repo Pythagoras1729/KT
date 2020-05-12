@@ -23,7 +23,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        def cmd= "python  Jenkin/Data/Jenkins_take_arguments.py \
+                        def cmd= "python  Jenkin/Jenkins_take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -32,8 +32,7 @@ pipeline{
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
-                        bat """
-                                set PYTHONPATH= Jenkin/.
+                        bat """                               
                                 ${cmd}
                            """
                     }
