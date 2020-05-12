@@ -39,7 +39,7 @@ pipeline{
                               echo "exporting PythonPath ... "
                               echo "path is : ${PATH}"
                               echo " python path is: ${PYTHONPATH}"
-                              echo "pwd: $(pwd)"
+                              echo "pwd: $pwd()"
                               ${cm}
                            """
                     }
