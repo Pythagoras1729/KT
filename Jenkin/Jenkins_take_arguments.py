@@ -1,7 +1,3 @@
-import os,sys
-sys.path.append(os.getcwd())
-print("cwd:",os.getcwd())
-print("sys.path:",sys.path,sep='\n')
 from collections import OrderedDict
 import pandas as pd
 import time, subprocess
