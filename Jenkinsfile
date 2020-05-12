@@ -23,8 +23,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        echo "PAth: ${PATH}"
-                        def cm= "python  take_arguments.py \
+                        def cm= "python  Jenkins_take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -33,12 +32,7 @@ pipeline{
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
-                        echo "Inta varaku bane undi le"
-
                         bat """
-                              echo "exporting PythonPath ... "
-                              echo "path is : ${PATH}"
-                              echo " python path is: ${PYTHONPATH}"
                               ${cm}
                            """
                     }
