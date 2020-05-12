@@ -24,7 +24,7 @@ pipeline{
                     println("Test starts")
                     try{
                         echo "PAth: ${PATH}"
-                        def cm= "python3  take_arguments.py \
+                        def cm= "python  take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
