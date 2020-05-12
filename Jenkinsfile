@@ -10,15 +10,11 @@ pipeline{
         string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'Port number where we want to perform test')
         string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
     }
-    environment{
-        env.PATH = env.PATH+";C:\\WINDOWS\\SYSTEM32"
-       
-    }
     stages{
         stage('Set Environment'){
             steps{
                 script{
-                    env.PATH="C:\WINDOWS\SYSTEM32;"+env.PATH
+                    env.PATH="C:\\WINDOWS\\SYSTEM32;"+env.PATH
                 }
             }
         }
