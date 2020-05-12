@@ -15,6 +15,13 @@ pipeline{
        
     }
     stages{
+        stage('Set Environment'){
+            steps{
+                script{
+                    env.PATH="C:\WINDOWS\SYSTEM32;"+env.PATH
+                }
+            }
+        }
         stage('run test'){
             steps{
                 script{
