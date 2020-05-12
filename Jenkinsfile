@@ -14,7 +14,7 @@ pipeline{
         stage('Set Environment'){
             steps{
                 script{
-                    env.PATH="C:\\WINDOWS\\SYSTEM32;"+env.PATH
+                    env.PATH="C:\\WINDOWS\\SYSTEM32;"+env.PATH             
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        def cm= "python  Jenkins_take_arguments.py \
+                        def cm= "python  Jenkin/Data/Jenkins_take_arguments.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
@@ -33,7 +33,8 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
                         bat """
-                              ${cm}
+                                set PYTHONPATH=\$PATH:\$(pwd):\$(pwd)/Jenkin
+                                ${cm}
                            """
                     }
                     catch (err) {
