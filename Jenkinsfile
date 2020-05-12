@@ -38,10 +38,9 @@ pipeline{
                         bat """
                               echo "exporting PythonPath ... "
                               echo "path is : ${PATH}"
-                              echo "pwd: $(pwd)"
                               set PYTHONPATH=\\$PATH:\\\$(pwd):\\\$(pwd)
                               echo " python path is: ${PYTHONPATH}"
-                              ${cm}                             
+                              ${cm}
                            """
                     }
                     catch (err) {
