@@ -33,7 +33,7 @@ pipeline{
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
                         bat """
-                                set PYTHONPATH=\Jenkin
+                                set PYTHONPATH= /Jenkin/.
                                 ${cmd}
                            """
                     }
