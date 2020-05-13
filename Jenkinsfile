@@ -31,7 +31,7 @@ pipeline{
                                        -SERVER ${SERVER} \
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER ${PORT_NUMBER}   \
-                                       -API_METHOD ${METHOD}"
+                                       -API_METHOD ${API_METHOD}"
                         bat """                               
                                 ${cmd}
                            """
