@@ -1,26 +1,15 @@
 import xml.etree.ElementTree as etree
-import pandas as pd
 class Jmx_Editor():
-    def read_Client_File(self,client_file):
-        """
-        This method reads the data provided by client and returns the data as a dataframe.
-        :param client_file: CSV file provided by client
-        :return: Data Frame containing data provided by client
-        """
-
-        client_df = pd.read_csv(client_file)
-        return client_df
-
-    def edit_Jmx_File(self,testfile, args,result_file):
+     def edit_Jmx_File(self,testfile, args,result_file):
         """
         This method edits the jmx file as per client data.
         :param testfile: jmx file which is used to perform Load test.
         :param client_df: Data Frame containing data Provided by Client.
         :param client_data: Row number of current data in client CSV file(if multiple tests have to be done)
-        """
-        print('args:',args)
+        """        
         tree = etree.parse(testfile)
         root = tree.getroot()
+        print('editing jmx file')
         for tg in root.iter():
             if ('name' in tg.attrib):
                 if tg.attrib['name'] == "LoopController.loops":
@@ -42,6 +31,7 @@ class Jmx_Editor():
                 if tg.attrib['name'] =="filename":
                     tg.text=result_file
         tree.write(testfile)
+        print('jmx file edited')
 
     def change_Threads(self,testfile,threads):
         """
@@ -51,11 +41,13 @@ class Jmx_Editor():
         """
         tree = etree.parse(testfile)
         root = tree.getroot()
+        print('changing thread count')
         for tg in root.iter():
             if ('name' in tg.attrib):
                 if tg.attrib['name'] == "ThreadGroup.num_threads":
                     tg.text = str(threads)
         tree.write(testfile)
+        print('Thread count changed')
 
 if __name__ =="__main__":
     pass
