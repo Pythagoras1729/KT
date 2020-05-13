@@ -18,7 +18,7 @@ def Run_test(jmeter_path, jmx_file, result_file, args):
                         cwd=r'{}'.format(jmeter_path))
         end = time.time()
         runtime = end - start
-        analyser = Jenkins_Analyse.Analyse_Result_File(columns=columns, args=ARGS, result_csv=result_file,
+        analyser = Analyse.Analyse_Result_File(columns=columns, args=ARGS, result_csv=result_file,
                                                        runtime=runtime, users=Start, client_data=i)
         Start += Step
     return analyser.get_Result()
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     jmx_file = r'{}'.format(str((base / "../Data/Jmx/testfile.jmx").resolve()))
     result_file = r'{}'.format(str((base / "../Data/CSV/testoutput.csv").resolve()))
     final_out_file = r'{}'.format(str((base / "../Data/CSV/csvout.csv").resolve()))
-    editor = Jenkins_jmxeditor.Jmx_Editor()
+    editor = jmxeditor.Jmx_Editor()
     data = Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=ARGS)
     df = pd.DataFrame(data)
     df.to_csv(r'{}'.format(final_out_file), index=False)
