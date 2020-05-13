@@ -9,7 +9,6 @@ class Jmx_Editor():
         """        
         tree = etree.parse(testfile)
         root = tree.getroot()
-        print('editing jmx file')
         for tg in root.iter():
             if ('name' in tg.attrib):
                 if tg.attrib['name'] == "LoopController.loops":
@@ -31,7 +30,6 @@ class Jmx_Editor():
                 if tg.attrib['name'] =="filename":
                     tg.text=result_file
         tree.write(testfile)
-        print('Jmx file edited')
     def change_Threads(self,testfile,threads):
         """
         This methods updates the number of threads in jmx file in accordance with client data.
@@ -40,13 +38,11 @@ class Jmx_Editor():
         """
         tree = etree.parse(testfile)
         root = tree.getroot()
-        print('changing thread count')
         for tg in root.iter():
             if ('name' in tg.attrib):
                 if tg.attrib['name'] == "ThreadGroup.num_threads":
                     tg.text = str(threads)
         tree.write(testfile)
-        print('Thread count changed')
 
 if __name__ =="__main__":
     pass
