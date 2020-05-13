@@ -21,7 +21,7 @@ class Jmx_Editor():
                     tg.text = 'https'
                 if tg.attrib['name'] == "HTTPSampler.port":
                     port = args.PORT_NUMBER
-                    if (str(port) == 'nan'):
+                    if (str(port) == 'N/A'):
                         tg.text = ''
                     else:
                         tg.text = str(port)
