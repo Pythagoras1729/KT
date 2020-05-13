@@ -29,7 +29,7 @@ class Jmx_Editor():
                     tg.text = args.API_METHOD
                 if tg.attrib['name'] =="filename":
                     tg.text=result_file
-        tree.write(testfile)
+        tree.write(r'{}'.format(testfile))
     def change_Threads(self,testfile,threads):
         """
         This methods updates the number of threads in jmx file in accordance with client data.
