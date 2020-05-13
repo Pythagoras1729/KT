@@ -23,7 +23,7 @@ pipeline{
                 script{
                     println("Test starts")
                     try{
-                        def cmd= "python  Jenkin/Jenkins_take_arguments.py \
+                        def cmd= "python  Jenkin/main.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
