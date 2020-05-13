@@ -30,7 +30,7 @@ pipeline{
                                        -STOP_RPS ${STOP_RPS}   \
                                        -SERVER ${SERVER} \
                                        -API_PATH ${API_PATH}           \
-                                       -PORT_NUMBER 80   \
+                                       -PORT_NUMBER ${PORT_NUMBER}   \
                                        -API_METHOD ${METHOD}"
                         bat """                               
                                 ${cmd}
