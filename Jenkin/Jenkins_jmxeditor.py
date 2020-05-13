@@ -4,9 +4,9 @@ class Jmx_Editor():
         """
         This method edits the jmx file as per client data.
         :param testfile: jmx file which is used to perform Load test.
-        :param client_df: Data Frame containing data Provided by Client.
-        :param client_data: Row number of current data in client CSV file(if multiple tests have to be done)
-        """        
+        :param args: Input Data obtained from Jenkins
+        :param result_file: file where jmx test output data has to be stored
+        """
         tree = etree.parse(testfile)
         root = tree.getroot()
         for tg in root.iter():
@@ -21,7 +21,7 @@ class Jmx_Editor():
                     tg.text = 'https'
                 if tg.attrib['name'] == "HTTPSampler.port":
                     port = args.PORT_NUMBER
-                    if (str(port) == 'N/A'):
+                    if str(port) == 'N/A':
                         tg.text = ''
                     else:
                         tg.text = str(port)
@@ -29,7 +29,7 @@ class Jmx_Editor():
                     tg.text = args.API_METHOD
                 if tg.attrib['name'] =="filename":
                     tg.text=result_file
-        tree.write(r'{}'.format(testfile))
+        tree.write(testfile)
     def change_Threads(self,testfile,threads):
         """
         This methods updates the number of threads in jmx file in accordance with client data.
