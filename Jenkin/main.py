@@ -3,7 +3,7 @@ sys.path.append(os.getcwd())
 from collections import OrderedDict
 import pandas as pd
 import time, subprocess
-from Jenkin import Jenkins_jmxeditor, Jenkins_Analyse
+from Jenkin import jmxeditor, Analyse
 from pathlib import Path
 import argparse
 
