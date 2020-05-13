@@ -1,6 +1,16 @@
 import xml.etree.ElementTree as etree
 import pandas as pd
 class Jmx_Editor():
+    def read_Client_File(self,client_file):
+        """
+        This method reads the data provided by client and returns the data as a dataframe.
+        :param client_file: CSV file provided by client
+        :return: Data Frame containing data provided by client
+        """
+
+        client_df = pd.read_csv(client_file)
+        return client_df
+
     def edit_Jmx_File(self,testfile, args,result_file):
         """
         This method edits the jmx file as per client data.
@@ -8,6 +18,7 @@ class Jmx_Editor():
         :param client_df: Data Frame containing data Provided by Client.
         :param client_data: Row number of current data in client CSV file(if multiple tests have to be done)
         """
+        print('args:',args)
         tree = etree.parse(testfile)
         root = tree.getroot()
         for tg in root.iter():
@@ -15,20 +26,20 @@ class Jmx_Editor():
                 if tg.attrib['name'] == "LoopController.loops":
                     tg.text = str(args.LOOPS)
                 if tg.attrib['name'] == "HTTPSampler.domain":
-                    tg.text = args.SERVER
+                    tg.text = str(args.SERVER)
                 if tg.attrib['name'] == "HTTPSampler.path":
-                    tg.text = args.API_PATH
+                    tg.text = str(args.API_PATH)
                 if tg.attrib['name'] == "HTTPSampler.protocol":
                     tg.text = 'https'
                 if tg.attrib['name'] == "HTTPSampler.port":
                     port = args.PORT_NUMBER
-                    if (str(port) == 'N/A'):
+                    if (str(port) == 'nan'):
                         tg.text = ''
                     else:
                         tg.text = str(port)
                 if tg.attrib['name'] == "HTTPSampler.method":
                     tg.text = args.API_METHOD
-                if tg.attrib['name']=="filename":
+                if tg.attrib['name'] =="filename":
                     tg.text=result_file
         tree.write(testfile)
 
