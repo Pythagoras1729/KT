@@ -55,6 +55,5 @@ if __name__ == "__main__":
     final_out_file = r'{}'.format(str((base / "../Data/CSV/csvout.csv").resolve()))
     editor = Jenkins_jmxeditor.Jmx_Editor()
     data = Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=ARGS)
-    print('jmx_file:',jmx_file,'\nresult_file:',result_file,'\nfinal_out_file:',final_out_file)
     df = pd.DataFrame(data)
     df.to_csv(r'{}'.format(final_out_file), index=False)
