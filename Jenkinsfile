@@ -5,7 +5,7 @@ pipeline{
         string(name: 'STEP_RPS', defaultValue: '50', description: 'Step rps')
         string(name: 'LOOPS', defaultValue: '1', description: 'NO.of Loops we want to run')
         string(name: 'STOP_RPS', defaultValue: '', description: 'Stop rps')
-        string(name: 'CLUSTER_NAME', defaultValue: '', description: 'Name of cluster under test')
+        string(name: 'SERVER', defaultValue: '', description: 'Name of cluster under test')
         string(name: 'API_PATH', defaultValue: '', description: 'API path')
         string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'Port number where we want to perform test')
         string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
@@ -28,7 +28,7 @@ pipeline{
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
                                        -STOP_RPS ${STOP_RPS}   \
-                                       -SERVER ${CLUSTER_NAME} \
+                                       -SERVER ${SERVER} \
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER 80   \
                                        -API_METHOD ${METHOD}"
