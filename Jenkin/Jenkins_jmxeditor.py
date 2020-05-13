@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as etree
 class Jmx_Editor():
-     def edit_Jmx_File(self,testfile, args,result_file):
+    def edit_Jmx_File(self,testfile, args,result_file):
         """
         This method edits the jmx file as per client data.
         :param testfile: jmx file which is used to perform Load test.
@@ -31,8 +31,7 @@ class Jmx_Editor():
                 if tg.attrib['name'] =="filename":
                     tg.text=result_file
         tree.write(testfile)
-        print('jmx file edited')
-
+        print('Jmx file edited')
     def change_Threads(self,testfile,threads):
         """
         This methods updates the number of threads in jmx file in accordance with client data.
