@@ -4,6 +4,7 @@ from collections import OrderedDict
 import pandas as pd
 import time, subprocess
 from Jenkin import Jenkins_jmxeditor, Jenkins_Analyse
+from pathlib import Path
 import argparse
 
 
@@ -47,10 +48,11 @@ if __name__ == "__main__":
     (SERVER, PORT_NUMBER, API_PATH, API_METHOD) = (ARGS.SERVER, ARGS.PORT_NUMBER, ARGS.API_PATH, ARGS.API_METHOD)
 
     # Configure paths for local files
+    base = Path(__file__)
     jmeter_path = r'C:\rbejawad\jmeter\apache-jmeter-5.2.1\bin'
-    jmx_file = r'C:\Users\rbejawad\Desktop\KT\Jenkin\Data\Jmx\testfile.jmx'
-    result_file = r'C:\Users\rbejawad\Desktop\KT\Jenkin\Data\CSV\testoutput.csv'
-    final_out_file=r'C:\Users\rbejawad\Desktop\KT\Jenkin\Data\CSV\csvout.csv'
+    jmx_file = r'{}'.format(str((base / "../Data/Jmx/testfile.jmx").resolve()))
+    result_file = r'{}'.format(str((base / "../Data/CSV/testoutput.csv").resolve()))
+    final_out_file = r'{}'.format(str((base / "../Data/CSV/csvout.csv").resolve()))
     editor = Jenkins_jmxeditor.Jmx_Editor()
     data = Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=ARGS)
     df = pd.DataFrame(data)
