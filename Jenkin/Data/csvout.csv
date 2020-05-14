@@ -1,0 +1,6 @@
+Host,URL,Method,Success Rate,e2e_0.50(ms),e2e_0.90(ms),e2e_0.99(ms),Test Runtime,Requests sent,response_codes(client exptd_response_count),Expected no.of requests sent
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,100.0%,6600.0,8771.0,8824.0,0min 13sec,20,{ 200 : 20 },20
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,100.0%,9760.5,15904.0,16316.0,0min 21sec,40,{ 200 : 40 },40
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,100.0%,15726.0,23981.0,24371.0,0min 29sec,60,{ 200 : 60 },60
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,100.0%,17427.5,29117.0,29773.0,0min 34sec,80,{ 200 : 80 },80
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,100.0%,21584.5,37256.0,37457.0,0min 42sec,100,{ 200 : 100 },100
