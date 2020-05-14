@@ -22,7 +22,6 @@ pipeline{
             steps{
                 script{
                     println("Test starts")
-                    try{
                         def cmd= "python  Jenkin/main.py \
                                        -START_RPS ${START_RPS} \
                                        -STEP_UP_RATE ${STEP_RPS}   \
@@ -35,10 +34,6 @@ pipeline{
                         bat """                               
                                 ${cmd}
                            """
-                    }
-                    catch (err) {
-                        println("Some Error while running the task:\n err:"+err)
-                    } //end of catch
                 }//end of script
             }//end of steps
         }//end of stage
