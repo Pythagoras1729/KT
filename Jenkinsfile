@@ -1,14 +1,14 @@
 pipeline{
     agent any
     parameters{
-        string(name: 'START_RPS', defaultValue: '', description:'Start rate in rps(requests per second)')
-        string(name: 'STEP_RPS', defaultValue: '50', description: 'Step rps')
-        string(name: 'LOOPS', defaultValue: '1', description: 'NO.of Loops we want to run')
-        string(name: 'STOP_RPS', defaultValue: '', description: 'Stop rps')
-        string(name: 'SERVER', defaultValue: '', description: 'Name of cluster under test')
+        string(name: 'START_RPS', defaultValue: '', description:'Start value of threads')
+        string(name: 'STEP_RPS', defaultValue: '50', description: 'Step up rate')
+        string(name: 'LOOPS', defaultValue: '1', description: 'No.of Loops we want to run')
+        string(name: 'STOP_RPS', defaultValue: '', description: 'Threshold no.of threads')
+        string(name: 'SERVER', defaultValue: '', description: 'Name ofServer we want to test')
         string(name: 'API_PATH', defaultValue: '', description: 'API path')
-        string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'Port number where we want to perform test')
-        string(name: 'METHOD', defaultValue:'', description:'Method (GET, PUT, POST)')
+        string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'N/A if not specified')
+        string(name: 'API_METHOD', defaultValue:'', description:'(GET, PUT, POST)')
     }
     stages{
         stage('Set Environment'){
