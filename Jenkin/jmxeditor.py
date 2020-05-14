@@ -32,7 +32,7 @@ class Jmx_Editor():
         tree.write(testfile)
     def change_Threads(self,testfile,threads):
         """
-        This methods updates the number of threads in jmx file in accordance with client data.
+        This methods updates the number of threads in jmx file in accordance with Jenkins data.
         :param testfile: jmx file which is used to perform Load test
         :param threads: No.of users/threads
         """
