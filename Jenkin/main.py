@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     # Configure  relative paths for local files
     base = Path(__file__)
-    jmeter_path = r'C:\rbejawad\jmeter\apache-jmeter-5.2.1\bin'
+    jmeter_path = r'{}'.format(str((base / "../jmeter/apache-jmeter-5.2.1/bin").resolve()))
     jmx_file = r'{}'.format(str((base / "../Data/Jmx/testfile.jmx").resolve()))
     result_file = r'{}'.format(str((base / "../Data/CSV/testoutput.csv").resolve()))
     final_out_file = r'{}'.format(str((base / "../Data/CSV/csvout.csv").resolve()))
