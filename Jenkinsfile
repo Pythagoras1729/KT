@@ -2,8 +2,8 @@ pipeline{
     agent any
     parameters{
         string(name: 'START_RPS', defaultValue: '', description:'Start value of threads')
-        string(name: 'STEP_RPS', defaultValue: '50', description: 'Step up rate')
-        string(name: 'LOOPS', defaultValue: '1', description: 'No.of Loops we want to run')
+        string(name: 'STEP_RPS', defaultValue: '', description: 'Step up rate')
+        string(name: 'LOOPS', defaultValue: '', description: 'No.of Loops we want to run')
         string(name: 'STOP_RPS', defaultValue: '', description: 'Threshold no.of threads')
         string(name: 'SERVER', defaultValue: '', description: 'Name ofServer we want to test')
         string(name: 'API_PATH', defaultValue: '', description: 'API path')
