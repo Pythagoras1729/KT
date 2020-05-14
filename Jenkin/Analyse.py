@@ -1,11 +1,17 @@
 from collections import Counter
 import pandas as pd
 class Analyse_Result_File():
-    def __init__(self, columns, args, result_csv, runtime, users, client_data):
+    def __init__(self, columns, args, result_csv, runtime, users):
+        '''
+        :param columns: Columns for final output file
+        :param args: Input data obtained from Jenkins
+        :param result_csv: Csv file obtained after Jmeter test run
+        :param runtime: Time taken to complete Jmeter test
+        :param users: No.of threads used to perform current test
+        '''
         self.dict = columns
         self.Expected_threads=users
         self.args=args
-        self.client_data = client_data
         self.df = pd.read_csv(result_csv)
         self.test_runtime = str(int(runtime // 60)) + 'min' + ' ' + str(int(runtime % 60)) + 'sec'
         self.dict['Host'].append(self.get_Host())
