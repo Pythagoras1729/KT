@@ -1,4 +1,4 @@
-import os,sys
+import os, sys
 sys.path.append(os.getcwd())
 from collections import OrderedDict
 import pandas as pd
@@ -8,8 +8,16 @@ from pathlib import Path
 import argparse
 
 
+
 def Run_test(jmeter_path, jmx_file, result_file, args):
-    editor.edit_Jmx_File(jmx_file, args,result_file)
+    '''
+    This function performs jmeter test and calls necessary methods to edit the jmx test file and analyses the Test data.
+    :param jmeter_path: Location of Jmeter.exe file
+    :param jmx_file: Location of Jmeter test file
+    :param result_file: Location of Jmeter test output file
+    :param args: Input obtained from Jenkins
+    '''
+    editor.edit_Jmx_File(jmx_file, args, result_file)
     Start, End, Step = args.START_RPS, args.STOP_RPS, args.STEP_UP_RATE
     while (Start <= End):
         editor.change_Threads(jmx_file, Start)
@@ -19,13 +27,13 @@ def Run_test(jmeter_path, jmx_file, result_file, args):
         end = time.time()
         runtime = end - start
         analyser = Analyse.Analyse_Result_File(columns=columns, args=ARGS, result_csv=result_file,
-                                                       runtime=runtime, users=Start, client_data=i)
+                                               runtime=runtime, users=Start)
         Start += Step
     return analyser.get_Result()
 
 
 if __name__ == "__main__":
-    # defining columns
+    # defining columns for the final output csv file
     columns = OrderedDict()
     st = ['Host', 'URL', 'Method', 'Success Rate', "e2e_0.50(ms)", "e2e_0.90(ms)", "e2e_0.99(ms)", 'Test Runtime',
           'Requests sent',
@@ -47,12 +55,13 @@ if __name__ == "__main__":
     (START_RPS, STEP_UP_RATE, LOOPS, STOP_RPS) = (ARGS.START_RPS, ARGS.STEP_UP_RATE, ARGS.LOOPS, ARGS.STOP_RPS)
     (SERVER, PORT_NUMBER, API_PATH, API_METHOD) = (ARGS.SERVER, ARGS.PORT_NUMBER, ARGS.API_PATH, ARGS.API_METHOD)
 
-    # Configure paths for local files
+    # Configure  relative paths for local files
     base = Path(__file__)
     jmeter_path = r'C:\rbejawad\jmeter\apache-jmeter-5.2.1\bin'
     jmx_file = r'{}'.format(str((base / "../Data/Jmx/testfile.jmx").resolve()))
     result_file = r'{}'.format(str((base / "../Data/CSV/testoutput.csv").resolve()))
     final_out_file = r'{}'.format(str((base / "../Data/CSV/csvout.csv").resolve()))
+
     editor = jmxeditor.Jmx_Editor()
     data = Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=ARGS)
     df = pd.DataFrame(data)
