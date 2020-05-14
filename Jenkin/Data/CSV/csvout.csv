@@ -1,6 +1,0 @@
-Host,URL,Method,Success Rate,e2e_0.50(ms),e2e_0.90(ms),e2e_0.99(ms),Test Runtime,Requests sent,response_codes(client exptd_response_count),Expected no.of requests sent
-daas-sti-arm319,https://www.jntuk.edu.in\,GET,0.0%,0.0,0.0,0.0,0min 5sec,20,{ Non HTTP response code: java.net.URISyntaxException : 20 },20
-daas-sti-arm319,https://www.jntuk.edu.in\,GET,0.0%,0.0,0.0,0.0,0min 5sec,40,{ Non HTTP response code: java.net.URISyntaxException : 40 },40
-daas-sti-arm319,https://www.jntuk.edu.in\,GET,0.0%,0.0,0.0,0.0,0min 5sec,60,{ Non HTTP response code: java.net.URISyntaxException : 60 },60
-daas-sti-arm319,https://www.jntuk.edu.in\,GET,0.0%,0.0,0.0,0.0,0min 4sec,80,{ Non HTTP response code: java.net.URISyntaxException : 80 },80
-daas-sti-arm319,https://www.jntuk.edu.in\,GET,0.0%,0.0,0.0,0.0,0min 5sec,100,{ Non HTTP response code: java.net.URISyntaxException : 100 },100
