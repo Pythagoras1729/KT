@@ -30,9 +30,9 @@ pipeline{
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
                                        -STOP_RPS ${STOP_RPS}   \
-                                       -e2e_50_threshold ${E2E_50_THRESHOLD} \
-                                       -e2e_90_threshold ${E2E_90_THRESHOLD} \
-                                       -e2e_99_threshold ${E2E_99_THRESHOLD} \
+                                       -E2E_50_THRESHOLD ${E2E_50_THRESHOLD} \
+                                       -E2E_90_THRESHOLD ${E2E_90_THRESHOLD} \
+                                       -E2E_99_THRESHOLD ${E2E_99_THRESHOLD} \
                                        -SERVER ${SERVER} \
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER ${PORT_NUMBER}   \
