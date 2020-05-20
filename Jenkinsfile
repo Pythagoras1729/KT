@@ -44,4 +44,9 @@ pipeline{
             }//end of steps
         }//end of stage
     }//end of stages
+    post{
+        always{
+                archive '"${env.WORKSPACE}"\Jenkins\Data\CSV\Aggregate_Result.csv'
+        }//end of always
+    }//end of post
 }//end of pipeine
