@@ -46,7 +46,7 @@ pipeline{
     }//end of stages
     post{
         success{
-                archiveArtifacts 'Jenkin/Data/CSV/Aggregate_Result.csv'
+                archiveArtifacts '*/*/*/*.csv'
         }//end of success
     }//end of post
 }//end of pipeine
