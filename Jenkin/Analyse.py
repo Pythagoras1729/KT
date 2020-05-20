@@ -23,13 +23,13 @@ class Analyse_Result_File():
             self.dict[i].append(percentiles[i])
         self.dict['Test Runtime'].append(str(int(runtime))+'sec')
         self.dict['Requests sent'].append(self.Expected_threads)
-        self.dict['Bottle Neck'].append(self.get_Bottle_Neck(self.check_Latencies()))
+        self.dict['Bottle Neck'].append('Yes' if self.check_Latencies() is False else 'No')
         self.dict['response_codes(client expected_response_count)'].append(self.get_Response_Codes())
         self.dict['Expected no.of requests sent'].append(self.Expected_threads)
 
     def check_Latencies(self):
         """
-        This method reads the Latency metrics for .50, .90 and .99 percentiles from dataframe(csv file) and compare them with given threshold values
+        This method reads the Latency metrics for .50, .90 and .99 percentiles from dataframe(csv file) and compares them with given threshold values
         :return: True or False
             """
         e2e_50_th, e2e_90_th, e2e_99_th = self.args.E2E_50_THRESHOLD, self.args.E2E_90_THRESHOLD, self.args.E2E_99_THRESHOLD
@@ -53,12 +53,6 @@ class Analyse_Result_File():
         This method returns Host name from dataframe(csv file)
             """
         return self.df['Hostname'][0]
-
-    def get_Bottle_Neck(self, bool):
-        """
-        This method returns the percentage of threads whose requests succeeded, from dataframe(csv file)
-            """
-        return 'Yes' if bool is False else 'No'
 
     def get_Response_Codes(self):
         """

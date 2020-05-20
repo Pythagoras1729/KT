@@ -9,13 +9,15 @@ import argparse
 
 
 def Run_test(jmeter_path, jmx_file, result_file, args, Start, End, Step=None):
-    '''
-    This function performs jmeter test and calls necessary methods to edit the jmx test file and analyses the Test data.
-    :param jmeter_path: Location of Jmeter.exe file
+    """
+    This function performs jmeter test and calls necessary methods to edit the jmx test file and analyse the Test results.
+    :param jmeter_path: Location of ApacheJmeter.jar file
     :param jmx_file: Location of Jmeter test file
     :param result_file: Location of Jmeter test output file
     :param args: Input obtained from Jenkins
-    '''
+    """
+
+    editor = jmxeditor.Jmx_Editor()
     editor.edit_Jmx_File(jmx_file, args, result_file)
     Start, End, Step = Start, End, Step
     while (Start <= End):
@@ -31,48 +33,53 @@ def Run_test(jmeter_path, jmx_file, result_file, args, Start, End, Step=None):
             if (Step == None):
                 return True
             else:
-                Start+=Step
+                Start += Step
         else:
             if (Step == None):
                 return False
             else:
-                min=Start//2
-                find_sweetspot(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, min=min, max=Start, mid=(Start + min) // 2)
+                min = Start // 2
+                find_sweetspot(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, min=min,
+                               max=Start, mid=(Start + min) // 2)
                 break
     return analyser.get_Result()
 
 
 def find_sweetspot(jmeter_path, jmx_file, result_file, args, max, min, mid):
-    print(f'Min:{min}, Max:{max}, Mid:{mid}')
-    s=0
-    if(min==0):
-        min=1
-    if min < max  and min!=mid :
+    """
+    This function is used to find sweetspot
+    :param jmeter_path: Location of ApacheJmeter.jar file
+    :param jmx_file: Location of Jmeter test file
+    :param result_file: Location of Jmeter test output file
+    :param args: Input obtained from Jenkins
+    :param min,mid,max: Sweetspot lies within this expected range ( min <= Sweespot <= max)
+        """
+    s = 0
+    if (min == 0):
+        min = 1
+    if min < max and min != mid:
         # true if test obeys threshold limits
         th_obeyed = Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, Start=mid,
                              End=max)
         if (th_obeyed):
             s = 1
-            print(f'Satisfied threshold limits, s:{s}')
             find_sweetspot(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, max=max,
                            min=mid, mid=(max + mid) // 2)
         else:
             s = 0
-            print(f'Failed to satisfy Threshold limits, s:{s}')
             find_sweetspot(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, max=mid,
                            min=min, mid=(mid + min) // 2)
     else:
-        if(s==1):
+        if (s == 1):
             Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, Start=max,
-                 End=max,Step=max)
+                     End=max, Step=max)
         else:
             Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=args, Start=min,
                      End=min, Step=min)
 
 
-
 if __name__ == "__main__":
-    # defining columns for the final output csv file
+    # defining columns for the final Aggregate csv file
     columns = OrderedDict()
     st = ['Host', 'URL', 'Method', "e2e_0.50(ms)", "e2e_0.90(ms)", "e2e_0.99(ms)", 'Bottle Neck', 'Test Runtime',
           'Requests sent',
@@ -104,8 +111,9 @@ if __name__ == "__main__":
     result_file = r'{}'.format(str((base / "../Data/CSV/testoutput.csv").resolve()))
     final_out_file = r'{}'.format(str((base / "../Data/CSV/Aggregate_Result.csv").resolve()))
 
-    editor = jmxeditor.Jmx_Editor()
+
     data = Run_test(jmeter_path=jmeter_path, jmx_file=jmx_file, result_file=result_file, args=ARGS,
                     Start=ARGS.START_RPS, Step=ARGS.STEP_UP_RATE, End=ARGS.STOP_RPS)
     df = pd.DataFrame(data)
+    # write analysed Aggregate data to a CSV file
     df.to_csv(r'{}'.format(final_out_file), index=False)
