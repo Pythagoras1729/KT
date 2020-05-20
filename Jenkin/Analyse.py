@@ -1,5 +1,7 @@
 from collections import Counter
 import pandas as pd
+
+
 class Analyse_Result_File():
     def __init__(self, columns, args, result_csv, runtime, users):
         '''
@@ -10,23 +12,31 @@ class Analyse_Result_File():
         :param users: No.of threads used to perform current test
         '''
         self.dict = columns
-        self.Expected_threads=users
-        self.args=args
+        self.Expected_threads = users
+        self.args = args
         self.df = pd.read_csv(result_csv)
-        self.test_runtime = str(int(runtime // 60)) + 'min' + ' ' + str(int(runtime % 60)) + 'sec'
         self.dict['Host'].append(self.get_Host())
         self.dict['URL'].append('https://' + str(self.args.SERVER) + str(self.args.API_PATH))
         self.dict['Method'].append(self.args.API_METHOD)
-        self.Success_Rate = round(self.get_Success_Rate(), 2)
-        self.Success_rate = str(self.Success_Rate * 100) + '%'
-        self.dict['Success Rate'].append(self.Success_rate)
         percentiles = self.get_Latencies()
         for i in percentiles:
             self.dict[i].append(percentiles[i])
-        self.dict['Test Runtime'].append(self.test_runtime)
+        self.dict['Test Runtime'].append(str(int(runtime))+'sec')
         self.dict['Requests sent'].append(self.Expected_threads)
-        self.dict['response_codes(client exptd_response_count)'].append(self.get_Response_Codes())
+        self.dict['Bottle Neck'].append(self.get_Bottle_Neck(self.check_Latencies()))
+        self.dict['response_codes(client expected_response_count)'].append(self.get_Response_Codes())
         self.dict['Expected no.of requests sent'].append(self.Expected_threads)
+
+    def check_Latencies(self):
+        """
+        This method reads the Latency metrics for .50, .90 and .99 percentiles from dataframe(csv file) and compare them with given threshold values
+        :return: True or False
+            """
+        e2e_50_th, e2e_90_th, e2e_99_th = self.args.E2E_50_THRESHOLD, self.args.E2E_90_THRESHOLD, self.args.E2E_99_THRESHOLD
+        e2e_50 = self.df['Latency'].quantile(0.50)
+        e2e_90 = round(self.df['Latency'].quantile(0.90), 0)
+        e2e_99 = round(self.df['Latency'].quantile(0.99), 0)
+        return True if ((e2e_50 <= e2e_50_th) and (e2e_90 <= e2e_90_th) and (e2e_99 <= e2e_99_th)) else False
 
     def get_Latencies(self):
         """
@@ -37,21 +47,19 @@ class Analyse_Result_File():
         percentiles["e2e_0.90(ms)"] = round(self.df['Latency'].quantile(0.90), 0)
         percentiles["e2e_0.99(ms)"] = round(self.df['Latency'].quantile(0.99), 0)
         return percentiles
+
     def get_Host(self):
         """
         This method returns Host name from dataframe(csv file)
             """
         return self.df['Hostname'][0]
-    def get_Success_Rate(self):
+
+    def get_Bottle_Neck(self, bool):
         """
         This method returns the percentage of threads whose requests succeeded, from dataframe(csv file)
             """
-        c = 0
-        for i in self.df['responseMessage']:
-            if (i == 'OK'):
-                c += 1
-        Success_Rate = c / len(self.df['responseMessage'])
-        return Success_Rate
+        return 'Yes' if bool is False else 'No'
+
     def get_Response_Codes(self):
         """
         This method returns the various response codes obtained during the load test, from dataframe(csvfile)
@@ -60,13 +68,15 @@ class Analyse_Result_File():
         l = []
         for i in dict2:
             l.append('{ ' + str(i) + " : " + str(dict2[i]) + " }")
-        s=', '.join(l)
+        s = ', '.join(l)
         return s
+
     def get_Result(self):
         """
          This method returns the aggregate results of the load test performed, from dataframe(csv file)
             """
         return self.dict
+
 
 if __name__ == "__main__":
     pass

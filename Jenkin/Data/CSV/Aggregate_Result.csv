@@ -1,0 +1,12 @@
+Host,URL,Method,e2e_0.50(ms),e2e_0.90(ms),e2e_0.99(ms),Bottle Neck,Test Runtime,Requests sent,response_codes(client expected_response_count),Expected no.of requests sent
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,5323.0,7751.0,7949.0,No,12sec,20,{ 200 : 20 },20
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,8166.0,13142.0,13348.0,Yes,18sec,40,{ 200 : 40 },40
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,8988.5,9917.0,11376.0,Yes,15sec,30,{ 200 : 30 },30
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,8693.0,9109.0,9232.0,Yes,13sec,25,{ 200 : 25 },25
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,7841.0,8206.0,8243.0,Yes,13sec,22,{ 200 : 22 },22
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,6806.0,7175.0,7410.0,Yes,11sec,21,{ 200 : 21 },21
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,7187.5,7548.0,7560.0,Yes,11sec,20,{ 200 : 20 },20
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,5031.0,5411.0,5479.0,No,9sec,15,{ 200 : 15 },15
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,5995.0,6222.0,6304.0,No,10sec,17,{ 200 : 17 },17
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,6541.0,6842.0,7013.0,Yes,11sec,18,{ 200 : 18 },18
+daas-sti-arm319,https://www.jntuk.edu.in/,GET,5696.0,6019.0,6029.0,No,10sec,17,{ 200 : 17 },17

@@ -5,6 +5,9 @@ pipeline{
         string(name: 'STEP_RPS', defaultValue: '', description: 'Step up rate')
         string(name: 'LOOPS', defaultValue: '', description: 'No.of Loops we want to run')
         string(name: 'STOP_RPS', defaultValue: '', description: 'Threshold no.of threads')
+        string(name: 'E2E_50_THRESHOLD', defaultValue: '0', description: 'e2e .50 threshold ms')
+        string(name: 'E2E_90_THRESHOLD', defaultValue: '0', description: 'e2e .90 threshold ms')
+        string(name: 'E2E_99_THRESHOLD', defaultValue: '0', description: 'e2e .99 threshold ms')
         string(name: 'SERVER', defaultValue: '', description: 'Name ofServer we want to test')
         string(name: 'API_PATH', defaultValue: '', description: 'API path')
         string(name: 'PORT_NUMBER', defaultValue: 'N/A', description: 'N/A if not specified')
@@ -27,6 +30,9 @@ pipeline{
                                        -STEP_UP_RATE ${STEP_RPS}   \
                                        -LOOPS ${LOOPS}         \
                                        -STOP_RPS ${STOP_RPS}   \
+                                       -e2e_50_threshold ${E2E_50_THRESHOLD} \
+                                       -e2e_90_threshold ${E2E_90_THRESHOLD} \
+                                       -e2e_99_threshold ${E2E_99_THRESHOLD} \
                                        -SERVER ${SERVER} \
                                        -API_PATH ${API_PATH}           \
                                        -PORT_NUMBER ${PORT_NUMBER}   \
