@@ -46,7 +46,7 @@ pipeline{
     }//end of stages
     post{
         always{
-                archiveArtifacts'"${env.WORKSPACE}"/Jenkins/Data/CSV/Aggregate_Result.csv'
+                archiveArtifacts'./Jenkins/Data/CSV/Aggregate_Result.csv'
         }//end of always
     }//end of post
 }//end of pipeine
